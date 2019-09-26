@@ -1,0 +1,4 @@
+#!/bin/sh
+
+ROOT_DIR=$(git rev-parse --show-toplevel)
+[ $? -eq 0 ] && docker-compose --file "${ROOT_DIR}/env/docker-compose.yaml" --project-directory "${ROOT_DIR}/env" $@

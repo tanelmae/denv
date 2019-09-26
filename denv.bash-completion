@@ -1,0 +1,9 @@
+if [ -d /usr/local/etc/bash_completion.d/docker-compose.bash-completion ]; then
+	. /usr/local/etc/bash_completion.d/docker-compose.bash-completion
+fi
+
+if [ -x "$(command -v _docker_compose)" ]; then
+	echo "docker-compose bash completion not found"
+else
+	complete -F _docker_compose denv
+fi
