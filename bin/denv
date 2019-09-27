@@ -1,4 +1,18 @@
 #!/bin/sh
 
+# Check that it is a git repo
 ROOT_DIR=$(git rev-parse --show-toplevel)
-[ $? -eq 0 ] && docker-compose --file "${ROOT_DIR}/env/docker-compose.yaml" --project-directory "${ROOT_DIR}/env" $@
+[ $? -ne 0 ] && exit 1
+
+# shellcheck source=/dev/null
+# Resolve hooks when found
+if [ -f "${ROOT_DIR}/.denv-hooks" ]; then
+	. "${ROOT_DIR}/.denv-hooks"
+
+	# Could be made somehow nicer later
+	if [ "${1}" = "up" ] && command -V __denv_up > /dev/null 2>&1; then
+		__denv_up ${ROOT_DIR}
+	fi
+fi
+
+docker-compose --file "${ROOT_DIR}/env/docker-compose.yaml" --project-directory "${ROOT_DIR}/env" $@
