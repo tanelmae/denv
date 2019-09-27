@@ -1,10 +1,10 @@
 class Denv < Formula
   desc "Docker Compose wrapper for git based projects"
   homepage "https://github.com/tanelmae/homebrew-denv"
-  url "https://github.com/tanelmae/homebrew-denv/archive/v0.1.0.zip"
-  sha256 "4c07ef047a69a42596bf2c501c181ec8a57512de92c561aa83e8efa3168774ac"
+  url "https://github.com/tanelmae/homebrew-denv/archive/v0.1.1.zip"
+  sha256 "98fe5b88da347aaef5a66eea1d7428962512532fc0bf530ea706242ebb70ed76"
   depends_on "git"
-  version "0.1.0"
+  version "0.1.1"
 
   def install
     chmod 0755, 'bin/denv'
